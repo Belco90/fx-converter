@@ -8,10 +8,12 @@ class MainSection extends React.Component {
       const rates = Object.entries(this.props.latestRates).map((rate, idx) => {return this.renderRate(rate, idx)});
 
       return (
-        <div>
-          <h1>Latest FX Rates ({this.props.date})</h1>
-          <h3>Base currency: {this.props.base}</h3>
-          <ul>{rates}</ul>
+        <div className="row">
+          <div className="col-xs-6">
+            <h1>Latest FX Rates <small>{this.props.date}</small></h1>
+            <h3>Base currency: {this.props.base}</h3>
+            <ul>{rates}</ul>
+          </div>
         </div>
       )
     }

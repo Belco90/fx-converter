@@ -25,7 +25,7 @@ class App extends React.Component {
 
   render() {
     return (
-    <div>
+    <div className="container">
       <MainSection
         base={this.state.base}
         date={this.state.date}
