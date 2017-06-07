@@ -8,7 +8,7 @@ class App extends React.Component {
     this.state = {
       date: null,
       base: null,
-      rates: null
+      rates: null,
     };
   }
 
@@ -16,7 +16,24 @@ class App extends React.Component {
     request.get('http://api.fixer.io/latest')
       .end((err, res) => {
         if (err) {
-          this.setState({rates: null});
+          /*
+          this.setState({
+            date: null,
+            base: null,
+            rates: null,
+          });
+          */
+
+          this.setState({
+            date: '07/06/2017',
+            base: 'EUR',
+            rates: {
+              'GBP': 1.2345,
+              'USD': 2.452,
+              'NOK': 0.78,
+              'JPY': 12.348,
+            }
+          })
         } else {
           this.setState(res.body);
         }
@@ -25,15 +42,15 @@ class App extends React.Component {
 
   render() {
     return (
-    <div className="container">
-      <MainSection
-        base={this.state.base}
-        date={this.state.date}
-        latestRates={this.state.rates}
-      />
-    </div>
-    )
+      <div className="container">
+        <MainSection
+          base={this.state.base}
+          date={this.state.date}
+          latestRates={this.state.rates}
+        />
+      </div>
+    );
   }
 }
 
-export default App
+export default App;
