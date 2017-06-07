@@ -1,6 +1,7 @@
 import React from 'react';
-import LatestFXRatesSection from '../components/LatestFXRatesSection';
 import request from 'superagent';
+import CheckFXRateSection from '../components/CheckFXRateSection';
+import LatestFXRatesSection from '../components/LatestFXRatesSection';
 
 class App extends React.Component {
   constructor(props) {
@@ -54,7 +55,7 @@ class App extends React.Component {
           </div>
 
           <div className="col-xs-12 col-md-7">
-
+            <CheckFXRateSection />
           </div>
 
         </div>

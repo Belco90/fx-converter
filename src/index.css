@@ -1,0 +1,9 @@
+@media (min-width: 992px) { /* min-width for md size defined by bootstrap */
+    form > .form-group {
+        margin-right: 10px;
+    }
+
+    form > .form-group > label {
+        margin-right: 5px;
+    }
+}

@@ -7,10 +7,10 @@ class LatestFXRatesSection extends React.Component {
     if (this.props.latestRates) {
 
       return (
-        <div className="latest-fx-rates">
+        <div className="latest-fx-rates-section">
 
           <h1>Latest FX Rates <small>{this.props.date}</small></h1>
-          <h3>Base currency: <span className="label label-info">{this.props.base}</span></h3>
+          <h3>Base currency: <span className="label label-primary">{this.props.base}</span></h3>
 
           <div>
             <RatesTable rates={this.props.latestRates}/>
@@ -20,7 +20,7 @@ class LatestFXRatesSection extends React.Component {
       );
     }
 
-    // default when something went getting data
+    // default when something went wrong getting data
     return (
       <div>
         <h1>Latest FX Rates</h1>
