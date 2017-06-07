@@ -1,5 +1,5 @@
 import React from 'react';
-import MainSection from '../components/MainSection';
+import LatestFXRatesSection from '../components/LatestFXRatesSection';
 import request from 'superagent';
 
 class App extends React.Component {
@@ -43,11 +43,21 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <MainSection
-          base={this.state.base}
-          date={this.state.date}
-          latestRates={this.state.rates}
-        />
+        <div className="row">
+
+          <div className="col-xs-12 col-md-5">
+            <LatestFXRatesSection
+              base={this.state.base}
+              date={this.state.date}
+              latestRates={this.state.rates}
+            />
+          </div>
+
+          <div className="col-xs-12 col-md-7">
+
+          </div>
+
+        </div>
       </div>
     );
   }
