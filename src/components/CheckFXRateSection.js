@@ -11,7 +11,7 @@ class CheckFXRateSection extends React.Component {
 
         <div className="row">
           <div className="col-md-6">
-            <form action="." method="GET" onSubmit={(e) => {this.onSubmitForm(e, this.props.fetchFXRateCb)}}>
+            <form action="." method="GET" onSubmit={e => {this.onSubmitForm(e, this.props.fetchFXRateCb)}}>
 
               <div className="form-group">
                 <label htmlFor="base-select">Sell Currency</label>

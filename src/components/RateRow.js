@@ -14,7 +14,7 @@ class RateRow extends React.Component {
 
 RateRow.propTypes = {
   currency: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired
+  amount: PropTypes.number.isRequired,
 };
 
 export default RateRow;

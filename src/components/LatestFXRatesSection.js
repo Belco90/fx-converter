@@ -3,6 +3,10 @@ import React from 'react';
 import RatesTable from './RatesTable';
 
 class LatestFXRatesSection extends React.Component {
+  componentDidMount() {
+    this.props.getLatestRates();
+  }
+
   render() {
     if (this.props.latestRates) {
 
@@ -13,7 +17,7 @@ class LatestFXRatesSection extends React.Component {
           <h3>Base currency: <span className="label label-primary">{this.props.base}</span></h3>
 
           <div>
-            <RatesTable rates={this.props.latestRates}/>
+            <RatesTable rates={this.props.latestRates} />
           </div>
 
         </div>
@@ -32,6 +36,7 @@ class LatestFXRatesSection extends React.Component {
 
 LatestFXRatesSection.PropTypes = {
   latestRates: PropTypes.object.isRequired,
+  getLatestRates: PropTypes.func.isRequired,
 };
 
 export default LatestFXRatesSection;

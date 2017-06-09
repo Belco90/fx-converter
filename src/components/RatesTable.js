@@ -15,7 +15,7 @@ class RatesTable extends React.Component {
   }
 
   renderRates() {
-    return Object.entries(this.props.rates).map((rate) => {return this.renderSingleRate(rate[0], rate[1])});
+    return Object.entries(this.props.rates).map((rate) => {return this.renderSingleRate(...rate)});
   }
 
   renderSingleRate(currency, amount) {

@@ -1,5 +1,9 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import request from 'superagent';
+import * as FXRateActions from '../actions/fx-rate';
 import CheckFXRateSection from '../components/CheckFXRateSection';
 import LatestFXRatesSection from '../components/LatestFXRatesSection';
 
@@ -7,11 +11,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      latestRates: {
-        date: null,
-        base: null,
-        rates: null,
-      },
       checkedRate: {
         date: null,
         sellCurrency: null,
@@ -21,33 +20,18 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    request.get('http://api.fixer.io/latest')
-      .end((err, res) => {
-        if (err) {
-          this.setState({
-            latestRates: {
-              date: null,
-              base: null,
-              rates: null,
-            },
-          });
-        } else {
-          this.setState({latestRates: res.body});
-        }
-      });
-  }
-
   render() {
+    const { latestRates, actions } = this.props;
     return (
       <div className="container">
         <div className="row">
 
           <div className="col-xs-12 col-md-5">
             <LatestFXRatesSection
-              base={this.state.latestRates.base}
-              date={this.state.latestRates.date}
-              latestRates={this.state.latestRates.rates}
+              base={latestRates.base}
+              date={latestRates.date}
+              latestRates={latestRates.rates}
+              getLatestRates={actions.getLatestRates}
             />
           </div>
 
@@ -76,7 +60,6 @@ class App extends React.Component {
             }
           });
         } else {
-          console.log(res.body);
           this.setState({
             checkedRate: {
               date: res.body.date,
@@ -90,4 +73,24 @@ class App extends React.Component {
   }
 }
 
-export default App;
+App.PropTypes = {
+  latestRates: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    latestRates: state,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(FXRateActions, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
