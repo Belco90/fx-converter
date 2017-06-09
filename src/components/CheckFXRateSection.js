@@ -1,4 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import CurrencySelect from './CurrencySelect';
+import RateResult from './RateResult';
 
 class CheckFXRateSection extends React.Component {
   render() {
@@ -6,42 +9,50 @@ class CheckFXRateSection extends React.Component {
       <div className="currency-pair-fx-rate-section">
         <h1>Check FX Rate</h1>
 
-        <div>
-          <form action="." method="GET" className="form-inline">
+        <div className="row">
+          <div className="col-md-6">
+            <form action="." method="GET" onSubmit={(e) => {this.onSubmitForm(e, this.props.fetchFXRateCb)}}>
 
-            <div className="form-group">
-              <label htmlFor="buy-currency-select">Buy Currency</label>
-              <select name="buy-currency" id="buy-currency-select" className="form-control">
-                <option value="GBP">GBP</option>
-                <option value="EUR">EUR</option>
-                <option value="USD">USD</option>
-              </select>
-            </div>
+              <div className="form-group">
+                <label htmlFor="base-select">Sell Currency</label>
+                <CurrencySelect name="base" defaultValue="EUR" />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="sell-currency-select">Sell Currency</label>
-              <select name="sell-currency" id="sell-currency-select" className="form-control">
-                <option value="GBP">GBP</option>
-                <option value="EUR">EUR</option>
-                <option value="USD">USD</option>
-              </select>
-            </div>
+              <div className="form-group">
+                <label htmlFor="symbols-select">Buy Currency</label>
+                <CurrencySelect name="symbols" defaultValue="GBP" />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="date-input">Date</label>
-              <input type="date" className="form-control"/>
-            </div>
+              <div className="form-group">
+                <label htmlFor="date-input">Date</label>
+                <input type="date" id="date-input" min="1999-01-02" className="form-control" required/>
+              </div>
 
-            <button type="submit" className="btn btn-primary">Check</button>
-          </form>
+              <button type="submit" className="btn btn-primary">Check</button>
+            </form>
+          </div>
 
-          <span>TODO: show here result</span>
-
-          <h2>TODO: show here historic rates checked</h2>
+          <div className="col-md-6">
+            <RateResult rate={this.props.checkedRate} />
+          </div>
         </div>
       </div>
     );
   }
+
+  onSubmitForm(e, cb) {
+    e.preventDefault();
+    let date = document.getElementById('date-input').value;
+    let sellCurrency = document.getElementById('base-select').value;
+    let buyCurrency = document.getElementById('symbols-select').value;
+
+    cb(date, sellCurrency, buyCurrency);
+  }
 }
+
+CheckFXRateSection.PropTypes = {
+  fetchFXRateCb: PropTypes.func.isRequired,
+  checkedRate: PropTypes.object.isRequired,
+};
 
 export default CheckFXRateSection;

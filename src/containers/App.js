@@ -7,9 +7,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: null,
-      base: null,
-      rates: null,
+      latestRates: {
+        date: null,
+        base: null,
+        rates: null,
+      },
+      checkedRate: {
+        date: null,
+        sellCurrency: null,
+        buyCurrency: null,
+        amount: null,
+      },
     };
   }
 
@@ -17,26 +25,15 @@ class App extends React.Component {
     request.get('http://api.fixer.io/latest')
       .end((err, res) => {
         if (err) {
-          /*
           this.setState({
-            date: null,
-            base: null,
-            rates: null,
+            latestRates: {
+              date: null,
+              base: null,
+              rates: null,
+            },
           });
-          */
-
-          this.setState({
-            date: '07/06/2017',
-            base: 'EUR',
-            rates: {
-              'GBP': 1.2345,
-              'USD': 2.452,
-              'NOK': 0.78,
-              'JPY': 12.348,
-            }
-          })
         } else {
-          this.setState(res.body);
+          this.setState({latestRates: res.body});
         }
       });
   }
@@ -48,19 +45,48 @@ class App extends React.Component {
 
           <div className="col-xs-12 col-md-5">
             <LatestFXRatesSection
-              base={this.state.base}
-              date={this.state.date}
-              latestRates={this.state.rates}
+              base={this.state.latestRates.base}
+              date={this.state.latestRates.date}
+              latestRates={this.state.latestRates.rates}
             />
           </div>
 
           <div className="col-xs-12 col-md-7">
-            <CheckFXRateSection />
+            <CheckFXRateSection fetchFXRateCb={this.fetchFXRate.bind(this)} checkedRate={this.state.checkedRate} />
           </div>
 
         </div>
       </div>
     );
+  }
+
+  fetchFXRate(date, sellCurrency, buyCurrency) {
+
+    let url = 'http://api.fixer.io/' + date + '?base=' + sellCurrency + '&symbols=' + buyCurrency;
+
+    request.get(url)
+      .end((err, res) => {
+        if (err) {
+          this.setState({
+            checkedRate: {
+              date: null,
+              sellCurrency: null,
+              buyCurrency: null,
+              amount: null,
+            }
+          });
+        } else {
+          console.log(res.body);
+          this.setState({
+            checkedRate: {
+              date: res.body.date,
+              sellCurrency: sellCurrency,
+              buyCurrency: buyCurrency,
+              amount: res.body.rates[buyCurrency],
+            }
+          });
+        }
+      });
   }
 }
 
