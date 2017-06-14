@@ -11,6 +11,7 @@ const store = configureStore({
       rates: {},
       base: null,
       date: null,
+      err: true,
     }
   ]
 });

@@ -11,9 +11,9 @@ class LatestFXRatesSection extends React.Component {
   }
 
   render () {
-    const {rates, date, base} = this.props;
+    const {rates, date, base, err} = this.props;
 
-    if (rates) {
+    if (!err) {
 
       return (
         <div className="latest-fx-rates-section">
