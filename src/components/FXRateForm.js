@@ -5,6 +5,8 @@ import CurrencySelect from './CurrencySelect'
 class FXRateForm extends React.Component {
   constructor(props) {
     super(props)
+
+    // initial form values
     this.state = {
       base: 'EUR',
       symbols: 'GBP',

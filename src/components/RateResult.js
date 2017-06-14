@@ -3,9 +3,9 @@ import React from 'react';
 class RateResult extends React.Component {
 
   render() {
-    if (this.props.rate.amount) {
+    if (!this.props.err) {
       return (
-        <h3>{this.props.rate.sellCurrency} => {this.props.rate.buyCurrency}: {this.props.rate.amount}</h3>
+        <h3>{this.props.sellCurrency} => {this.props.buyCurrency}: {this.props.rate}</h3>
       )
     }
 

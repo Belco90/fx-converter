@@ -16,7 +16,7 @@ const store = configureStore({
     date: null,
     sellCurrency: null,
     buyCurrency: null,
-    amount: null,
+    rate: null,
     err: true,
   }]
 

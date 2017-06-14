@@ -1,17 +1,17 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import RatesTable from './RatesTable';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as FXRateActions from '../actions/fx-rate';
+import PropTypes from 'prop-types'
+import React from 'react'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import * as FXRateActions from '../actions/fx-rate'
+import RatesTable from './RatesTable'
 
 class LatestFXRatesSection extends React.Component {
   componentDidMount () {
     this.props.actions.getLatestRates();
   }
 
-  render () {
-    const {rates, date, base, err} = this.props;
+  render() {
+    const {rates, date, base, err} = this.props
 
     if (!err) {
 
@@ -40,7 +40,6 @@ class LatestFXRatesSection extends React.Component {
 }
 
 LatestFXRatesSection.PropTypes = {
-  latestRates: PropTypes.object.isRequired,
   actions: PropTypes.shape({
     getLatestRates: PropTypes.func.isRequired,
   }),
@@ -59,4 +58,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LatestFXRatesSection);
+)(LatestFXRatesSection)
