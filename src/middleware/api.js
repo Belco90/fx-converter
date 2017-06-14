@@ -21,7 +21,7 @@ export default store => next => action => {
       } else {
         dispatch({
           type: successType,
-          response: res.body,
+          data: res.body,
         });
       }
     });

@@ -5,7 +5,15 @@ import {Provider} from 'react-redux';
 import App from './containers/App';
 import configureStore from './store/configureStore';
 
-const store = configureStore();
+const store = configureStore({
+  latestRates: [
+    {
+      rates: {},
+      base: null,
+      date: null,
+    }
+  ]
+});
 
 ReactDOM.render(
   <Provider store={store}>

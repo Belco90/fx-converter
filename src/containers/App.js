@@ -17,7 +17,7 @@ class App extends React.Component {
   }
 
   render() {
-    // const { latestRates, actions } = this.props;
+
     return (
       <div className="container">
         <div className="row">

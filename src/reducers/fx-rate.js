@@ -1,14 +1,23 @@
 import * as ActionType from '../actions/fx-rate';
 
-function latestRatesReducer(state = [], action) {
+function fxRateReducer(state = [], action) {
   switch (action.type) {
     case ActionType.LOAD_LATEST_RATES_SUCCESS:
-      return action.response;
-      break;
+
+      return Object.assign({}, state, {
+        latestRates: [
+          ...state.latestRates,
+          {
+            rates: action.data.rates,
+            base: action.data.base,
+            date: action.data.date,
+          }
+        ]
+      });
 
     default:
       return state;
   }
 }
 
-export default latestRatesReducer;
+export default fxRateReducer;

@@ -7,8 +7,7 @@ import * as FXRateActions from '../actions/fx-rate';
 
 class LatestFXRatesSection extends React.Component {
   componentDidMount () {
-    const {actions} = this.props;
-    actions.getLatestRates();
+    this.props.actions.getLatestRates();
   }
 
   render () {
@@ -48,12 +47,7 @@ LatestFXRatesSection.PropTypes = {
 };
 
 function mapStateToProps(state) {
-
-  return {
-    rates: state.rates,
-    base: state.base,
-    date: state.date,
-  }
+  return state.latestRates[state.latestRates.length - 1];
 }
 
 function mapDispatchToProps(dispatch) {
