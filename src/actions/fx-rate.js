@@ -12,7 +12,7 @@ export function getLatestRates() {
   return {
     [CALL_API]: {
       method: 'get',
-      url: 'http://api.fixer.io/latest',
+      url: 'https://api.fixer.io/latest',
       sendingType: GETTING_LATEST_RATES,
       successType: LOAD_LATEST_RATES_SUCCESS,
       failureType: LOAD_LATEST_RATES_FAILED,
@@ -25,7 +25,7 @@ export function getFXRate(date, sellCurrency, buyCurrency) {
   return {
     [CALL_API]: {
       method: 'get',
-      url: `http://api.fixer.io/${date}?base=${sellCurrency}&symbols=${buyCurrency}`,
+      url: `https://api.fixer.io/${date}?base=${sellCurrency}&symbols=${buyCurrency}`,
       sendingType: GETTING_FX_RATE,
       successType: LOAD_FX_RATE_SUCCESS,
       failureType: LOAD_FX_RATE_FAILED,
