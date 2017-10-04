@@ -1,6 +1,6 @@
 {
-  "short_name": "React FX Conversion",
-  "name": "React FX Conversion App",
+  "short_name": "FX Converter",
+  "name": "FX Converter App",
   "icons": [
     {
       "src": "favicon.ico",
