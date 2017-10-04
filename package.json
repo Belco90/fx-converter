@@ -2,6 +2,7 @@
   "name": "fx-converter",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://Belco90.github.io/fx-converter",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "react": "^15.6.1",
