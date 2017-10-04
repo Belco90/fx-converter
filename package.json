@@ -2,7 +2,7 @@
   "name": "fx-converter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Belco90.github.io/fx-converter",
+  "homepage": "http://belco90.github.io/fx-converter",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "react": "^15.6.1",
@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && gulp deploy",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
